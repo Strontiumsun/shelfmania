@@ -1,0 +1,25 @@
+{
+  "name": "shelfmania",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strontiumsun/shelfmania.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Strontiumsun/shelfmania/issues"
+  },
+  "homepage": "https://github.com/Strontiumsun/shelfmania#readme"
+}
