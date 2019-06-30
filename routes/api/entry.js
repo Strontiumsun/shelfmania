@@ -6,4 +6,4 @@ router.route("/show")
     .get(entryController.findAll)
 
 
-
+module.exports = router;
