@@ -3,6 +3,7 @@ import API from "../utils/API"
 
 import { Input, FormBtn } from "../components/form";
 import { BookList, BookListItem } from "../components/booklist";
+// import { List, ListItem } from "../components/list"
 
 class Home extends Component {
     // Initialize this.state.books as an empty array
@@ -58,6 +59,7 @@ class Home extends Component {
                                 <div>
                                     <BookListItem
                                         key={books.id}
+                                        id={books.id}
                                         title={books.volumeInfo.title}
                                         link={books.volumeInfo.infoLink}
                                         authors={books.volumeInfo.authors.join(", ")}

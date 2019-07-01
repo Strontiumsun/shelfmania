@@ -11,7 +11,7 @@ export function BookList({ children }) {
 
 export function BookListItem(props) {
     return (
-        <li className="list-group-item">
+        <li className="list-group-item" id={props.id}>
             <Container>
                 <Row>
                     <Col size="xs-4 sm-2">
