@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API"
 
 import { Input, FormBtn } from "../components/form";
+import { BookList, BookListItem } from "../components/booklist";
 
 class Home extends Component {
     // Initialize this.state.books as an empty array
@@ -12,8 +13,10 @@ class Home extends Component {
 
     searchForBooks = (query) => {
         API.findBooks(query)
-            .then(res => console.log(res.data))
-        // I want to check that the search works.
+            // .then(res => console.log(res.data))
+            .then(res => this.setState({ results: res.data }))
+            .catch(err => console.log(err))
+        // Search is working, so I will now pass the data into the results. 
     }
 
     handleInputChange = event => {
@@ -48,6 +51,26 @@ class Home extends Component {
                     type="text"
                     placeholder="Search..."></Input>
                 <FormBtn onClick={this.handleFormSubmit}>Submit Book</FormBtn>
+                {!this.state.results.length ? (<h1 className="text-center">No Books to Display</h1>) : (
+                    <BookList>
+                        {this.state.results.map(books =>
+                            (
+                                <div>
+                                    <BookListItem
+                                        key={books.id}
+                                        title={books.volumeInfo.title}
+                                        link={books.volumeInfo.infoLink}
+                                        authors={books.volumeInfo.authors.join(", ")}
+                                        description={books.volumeInfo.description}
+                                        thumbnail={books.volumeInfo.imageLinks.thumbnail}
+                                    >
+                                    </BookListItem>
+
+                                </div>)
+
+                        )}
+                    </BookList>
+                )}
             </div>
 
         )

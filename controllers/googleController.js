@@ -10,6 +10,8 @@ module.exports = {
         axios.get(BASEURL + query)
             .then(res => res.data.items.filter(
                 result =>
+                    result.id &&
+                    result.etag &&
                     result.volumeInfo.title &&
                     result.volumeInfo.infoLink &&
                     result.volumeInfo.authors &&
