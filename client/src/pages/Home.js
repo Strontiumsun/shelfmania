@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import API from "../utils/API"
 
 import { Input, FormBtn } from "../components/form";
-import { BookList, BookListItem } from "../components/booklist";
-// import { List, ListItem } from "../components/list"
+// import { BookList, BookListItem } from "../components/booklist";
+import { List, ListItem } from "../components/list"
+import SubmitBtn from "../components/submitbtn";
 
 class Home extends Component {
     // Initialize this.state.books as an empty array
@@ -51,8 +52,27 @@ class Home extends Component {
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="Search..."></Input>
-                <FormBtn onClick={this.handleFormSubmit}>Submit Book</FormBtn>
-                {!this.state.results.length ? (<h1 className="text-center">No Books to Display</h1>) : (
+                <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                <List>
+                    {!this.state.results.length ? (<div></div>) : (<div>
+                        {this.state.results.map(books => (
+                            <div>
+                                <ListItem
+                                    key={books.id}
+                                    id={books.id}
+                                    title={books.volumeInfo.title}
+                                    authors={books.volumeInfo.authors.join(", ")}
+                                    description={books.volumeInfo.description}
+                                    thumbnail={books.volumeInfo.imageLinks.thumbnail}
+                                    link={books.volumeInfo.infoLink}
+                                />
+                                <SubmitBtn>Submit Book</SubmitBtn>
+                            </div>
+                        ))}
+                    </div>)}
+                </List>
+
+                {/* {!this.state.results.length ? (<h1 className="text-center">No Books to Display</h1>) : (
                     <BookList>
                         {this.state.results.map(books =>
                             (
@@ -72,7 +92,7 @@ class Home extends Component {
 
                         )}
                     </BookList>
-                )}
+                )} */}
             </div>
 
         )
