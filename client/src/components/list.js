@@ -12,6 +12,14 @@ export function List({ children }) {
 
 export function ListItem(props) {
     return <li className="list-group-item" key={props.id}>
-        Title: {props.title} Author: {props.author}
+        Title: {props.title}
+        <br></br>
+        Author: {props.authors}
+        <br />
+        Description: {props.description}
+        <br />
+        <img src={props.thumbnail} alt="thumbnail" />
+        <br></br>
+        <a href={props.link}>More Info</a>
     </li>;
 }

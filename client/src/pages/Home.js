@@ -39,9 +39,23 @@ class Home extends Component {
 
         console.log(this.state.query)
         this.searchForBooks(this.state.query)
-
     }
 
+    handleBookSave = id => {
+        console.log("clicked save button!")
+        const book = this.state.results.find(books => books.id === id)
+        console.log(book)
+
+        // API.saveEntry({
+        //     username: "test",
+        //     title: book.volumeInfo.title,
+        //     link: book.volumeInfo.infoLink,
+        //     authors: book.volumeInfo.authors,
+        //     description: book.volumeInfo.description,
+        //     image: book.volumeInfo.imageLinks.thumbnail,
+        //     googleId: book.id
+        // }).then(res => console.log("entry saved!")).catch(err => console.log(err))
+    }
 
     render() {
         return (
@@ -66,33 +80,13 @@ class Home extends Component {
                                     thumbnail={books.volumeInfo.imageLinks.thumbnail}
                                     link={books.volumeInfo.infoLink}
                                 />
-                                <SubmitBtn>Submit Book</SubmitBtn>
+                                <SubmitBtn
+                                    onClick={() => this.handleBookSave(books.id)}
+                                >Submit Book code: {books.id}</SubmitBtn>
                             </div>
                         ))}
                     </div>)}
                 </List>
-
-                {/* {!this.state.results.length ? (<h1 className="text-center">No Books to Display</h1>) : (
-                    <BookList>
-                        {this.state.results.map(books =>
-                            (
-                                <div>
-                                    <BookListItem
-                                        key={books.id}
-                                        id={books.id}
-                                        title={books.volumeInfo.title}
-                                        link={books.volumeInfo.infoLink}
-                                        authors={books.volumeInfo.authors.join(", ")}
-                                        description={books.volumeInfo.description}
-                                        thumbnail={books.volumeInfo.imageLinks.thumbnail}
-                                    >
-                                    </BookListItem>
-
-                                </div>)
-
-                        )}
-                    </BookList>
-                )} */}
             </div>
 
         )

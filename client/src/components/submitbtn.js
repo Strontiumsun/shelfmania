@@ -7,3 +7,5 @@ export function SubmitBtn(props) {
         </button>
     );
 }
+
+export default SubmitBtn;

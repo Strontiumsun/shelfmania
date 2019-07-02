@@ -5,5 +5,7 @@ const entryController = require("../../controllers/entryController");
 router.route("/show")
     .get(entryController.findAll)
 
+router.route("/save")
+    .post(entryController.create)
 
 module.exports = router;
