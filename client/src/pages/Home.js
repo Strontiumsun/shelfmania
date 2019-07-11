@@ -46,15 +46,15 @@ class Home extends Component {
         const book = this.state.results.find(books => books.id === id)
         console.log(book)
 
-        // API.saveEntry({
-        //     username: "test",
-        //     title: book.volumeInfo.title,
-        //     link: book.volumeInfo.infoLink,
-        //     authors: book.volumeInfo.authors,
-        //     description: book.volumeInfo.description,
-        //     image: book.volumeInfo.imageLinks.thumbnail,
-        //     googleId: book.id
-        // }).then(res => console.log("entry saved!")).catch(err => console.log(err))
+        API.saveEntry({
+            username: "test",
+            title: book.volumeInfo.title,
+            link: book.volumeInfo.infoLink,
+            authors: book.volumeInfo.authors,
+            description: book.volumeInfo.description,
+            image: book.volumeInfo.imageLinks.thumbnail,
+            googleId: book.id
+        }).then(() => console.log("entry saved!")).catch(err => console.log(err))
     }
 
     render() {

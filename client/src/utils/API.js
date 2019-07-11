@@ -7,10 +7,10 @@ export default {
         return axios.get("/api/search/" + query)
     },
     saveEntry: function (entryData) {
-        return axios.post("/api/entries/save", entryData)
+        return axios.post("/api/entries", entryData)
     },
     showAll: function () {
-        return axios.get("api/entries/show")
+        return axios.get("api/entries")
     }
 
 }
