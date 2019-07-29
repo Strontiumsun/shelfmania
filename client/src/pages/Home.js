@@ -5,6 +5,7 @@ import { Input, FormBtn } from "../components/form";
 // import { BookList, BookListItem } from "../components/booklist";
 import { List, ListItem } from "../components/list"
 import SubmitBtn from "../components/submitbtn";
+import NewForm from "../components/formNew";
 
 class Home extends Component {
     // Initialize this.state.books as an empty array
@@ -87,6 +88,7 @@ class Home extends Component {
                         ))}
                     </div>)}
                 </List>
+                <NewForm />
             </div>
 
         )
