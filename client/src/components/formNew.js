@@ -7,12 +7,12 @@ export function NewForm(props) {
         <Form>
             <FormGroup>
                 <Label for="name">Name</Label>
-                <Input type="text" name="username" id="entry-name" placeholder="Give your Entry a username!"></Input>
+                <Input type="text" name="username" id="entry-name" placeholder="Give your Entry a username!" {...props}></Input>
             </FormGroup>
             <FormGroup>
                 <Label for="search">Look up a Book</Label>
-                <Input type="search" name="search" id="search-term" placeholder="Search for a book!"></Input>
-                <Button>Search!</Button>
+                <Input type="search" name="search" id="search-term" placeholder="Search for a book!" {...props}></Input>
+                <Button {...props}>{props.children}</Button>
             </FormGroup>
         </Form>
 

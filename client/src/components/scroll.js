@@ -10,7 +10,6 @@ export default class Scroll extends Component {
         }
     }
 
-
     render() {
 
         return (
@@ -35,7 +34,7 @@ export default class Scroll extends Component {
                         <Form>
                             <FormGroup check>
                                 <Label check>
-                                    <Input type="checkbox">{' '}
+                                    <Input type="checkbox" key={props.id}>{' '}
                                         Check me out</Input>
                                 </Label>
                             </FormGroup>
