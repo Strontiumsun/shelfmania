@@ -14,6 +14,7 @@ class Home extends Component {
         results: [],
     };
 
+
     searchForBooks = (query) => {
         API.findBooks(query)
             // .then(res => console.log(res.data))

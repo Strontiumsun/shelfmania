@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-// import API from "../utils/API"
-import { ListGroup, ListGroupItem, FormGroup, Form, Label, Input, Button } from "reactstrap";
+import API from "../utils/API"
+import { ListGroup, ListGroupItem, Button } from "reactstrap";
 
 
 
@@ -46,7 +46,6 @@ class FormScroll extends Component {
     render() {
         return (
             <ListGroup>
-
                 {this.props.books.map(books => (
                     <div>
                         <CustomListItem
@@ -58,10 +57,9 @@ class FormScroll extends Component {
                             thumbnail={books.thumbnail}
                             link={books.link}
                         />
+
                     </div>
                 ))}
-
-
             </ListGroup>
         )
     }
@@ -70,64 +68,112 @@ class FormScroll extends Component {
 
 function CustomListItem(props) {
     return (
-        <div>
-            <ListGroupItem >
-                <div className="list-title">
-                    {props.title}
-                </div>
-                <div className="list-author">
-                    {props.author}
-                </div>
-                <div>
-                    Description: {props.description}
-                </div>
-                <div className="list-thumb">
-                    <img src={props.thumbnail} alt="thumbnail"></img>
-                </div>
-                <div className="list-link">
-                    <a href={props.link}>More Info</a>
-                </div>
-                <Form>
-                    <FormGroup check>
-                        <Label check>
-                            <Input type="checkbox" id={props.id}>{' '}
-                                Check me out</Input>
-                        </Label>
-                    </FormGroup>
-                </Form>
-            </ListGroupItem>
-        </div>
+        <ListGroupItem key={props.id}>
+            <div className="list-title">
+                {props.title}
+            </div>
+            <div className="list-author">
+                {props.author}
+            </div>
+            <div>
+                Description: {props.description}
+            </div>
+            <div className="list-thumb">
+                <img src={props.thumbnail} alt="thumbnail"></img>
+            </div>
+            <div className="list-link">
+                <a href={props.link}>More Info</a>
+            </div>
+        </ListGroupItem>
+
     )
 }
 
 
 
-class FormInput extends Component {
-    render() {
-        return (
-            <div>
-                <div className="form-group">
-                    <label for="username">Your Name</label>
-                    <input type="text" className="form-control" placeholder="Your Name"></input>
-                </div>
-                <div className="form-group">
-                    <label for="search">Search...</label>
-                    <input type="text" className="form-control" placeholder="Search..."></input>
-                    <Button>Search!</Button>
-                </div>
-            </div>
+// class FormInput extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <div className="form-group">
+//                     <label>Your Name</label>
+//                     <input type="text" className="form-control" placeholder="Your Name"></input>
+//                 </div>
+//                 <div className="form-group">
+//                     <label>Search...</label>
+//                     <input type="text" className="form-control" placeholder="Search..."></input>
+//                     <Button>Search!</Button>
+//                 </div>
+//             </div>
 
-        )
-    }
-}
+//         )
+//     }
+// }
 
 
 class FormHolder extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: "",
+            username: "",
+            results: []
+        }
+    }
+    searchForBooks = (query) => {
+        API.findBooks(query)
+            .then(res => console.log(res.data))
+        // .then(res => this.setState({ results: res.data }))
+        // .catch(err => console.log(err))
+        // Search is working, so I will now pass the data into the results. 
+    }
+
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        const value = event.target.value;
+        const name = event.target.name;
+
+        // Updating the input's state
+        this.setState({
+            [name]: value
+        });
+
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        console.log("Pressed submit button!")
+
+        console.log(this.state.query)
+        this.searchForBooks(this.state.query)
+    }
+
+
     render() {
+
         return (
             <form>
-                <FormInput />
-                <FormScroll books={this.props.books} />
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Your Name"
+                        name="username"
+                        onChange={this.handleInputChange}
+                    >
+                    </input>
+                </div>
+                <div className="form-group">
+                    <input type="text"
+                        className="form-control"
+                        placeholder="Search..."
+                        value={this.state.query}
+                        name="query"
+                        onChange={this.handleInputChange}>
+                    </input>
+                    <Button onClick={this.handleFormSubmit}>Search!</Button>
+                </div>
+                <FormScroll books={this.state.results} />
                 <Button>Submit!</Button>
             </form>
         )
