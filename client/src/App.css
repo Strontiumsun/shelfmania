@@ -1,4 +1,20 @@
-.App {
+.scrolling {
+  overflow: scroll;
+  height: 300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -30,4 +46,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

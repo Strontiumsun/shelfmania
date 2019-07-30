@@ -45,22 +45,25 @@ class QuestionHolder extends Component {
 class FormScroll extends Component {
     render() {
         return (
-            <ListGroup>
-                {this.props.books.map(books => (
-                    <div>
-                        <CustomListItem
-                            key={books.id}
-                            id={books.id}
-                            title={books.title}
-                            author={books.author.join(", ")}
-                            description={books.description}
-                            thumbnail={books.thumbnail}
-                            link={books.link}
-                        />
+            <div className="scrolling">
+                <ListGroup>
+                    {this.props.books.map(books => (
+                        <div>
+                            <CustomListItem
+                                key={books.id}
+                                id={books.id}
+                                title={books.volumeInfo.title}
+                                author={books.volumeInfo.authors.join(", ")}
+                                description={books.volumeInfo.description}
+                                thumbnail={books.volumeInfo.imageLinks.thumbnail}
+                                link={books.volumeInfo.infoLink}
+                            />
 
-                    </div>
-                ))}
-            </ListGroup>
+                        </div>
+                    ))}
+                </ListGroup>
+            </div>
+
         )
     }
 }
@@ -122,9 +125,9 @@ class FormHolder extends Component {
     }
     searchForBooks = (query) => {
         API.findBooks(query)
-            .then(res => console.log(res.data))
-        // .then(res => this.setState({ results: res.data }))
-        // .catch(err => console.log(err))
+            // .then(res => console.log(res.data))
+            .then(res => this.setState({ results: res.data }))
+            .catch(err => console.log(err))
         // Search is working, so I will now pass the data into the results. 
     }
 
@@ -181,17 +184,17 @@ class FormHolder extends Component {
 }
 
 
-const BOOKS = [
-    { title: "The Princess Diaries", author: ["Meg Cabot"], description: "Mia is a princess, wow!", thumbnail: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1355011082l/38980.jpg", link: "https://www.megcabot.com/princessdiaries/", id: 1 },
-    { title: "The Hunger Games", author: ["Suzanne Collins"], description: "Katniss is in a whole lotta trouble", thumbnail: "https://images-na.ssl-images-amazon.com/images/I/41LPBRNaVCL._SX355_BO1,204,203,200_.jpg", link: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwjPoKqkkt3jAhWFneAKHaeoDoYQFjABegQIBxAB&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FThe_Hunger_Games_(novel)&usg=AOvVaw34d6CdVg1xKs3l1BeRRDos", id: 2 }
-]
+// const BOOKS = [
+//     { title: "The Princess Diaries", author: ["Meg Cabot"], description: "Mia is a princess, wow!", thumbnail: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1355011082l/38980.jpg", link: "https://www.megcabot.com/princessdiaries/", id: 1 },
+//     { title: "The Hunger Games", author: ["Suzanne Collins"], description: "Katniss is in a whole lotta trouble", thumbnail: "https://images-na.ssl-images-amazon.com/images/I/41LPBRNaVCL._SX355_BO1,204,203,200_.jpg", link: "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwjPoKqkkt3jAhWFneAKHaeoDoYQFjABegQIBxAB&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FThe_Hunger_Games_(novel)&usg=AOvVaw34d6CdVg1xKs3l1BeRRDos", id: 2 }
+// ]
 
 export default class FullQuestion extends Component {
     render() {
         return (
             <div>
-                <QuestionHolder question={"What's Your Favorite Teen Novel?"} />
-                <FormHolder books={BOOKS} />
+                <QuestionHolder question={"Let's do the test!"} />
+                <FormHolder />
             </div>
         )
     }
